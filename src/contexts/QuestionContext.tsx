@@ -1,9 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  type ReactNode,
-} from "react";
+import { createContext, useContext, type ReactNode } from "react";
 import type { Question, QuestionContextType } from "../types/questionType";
 import { useLocalStorage } from "../hooks/UseLocalStorage";
 

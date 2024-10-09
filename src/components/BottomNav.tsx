@@ -1,19 +1,16 @@
 import {
-  Badge,
   BottomNavigation,
   BottomNavigationAction,
   Box,
   styled,
 } from "@mui/material";
-import React, { useState } from "react";
 import { slideInBottom } from "../styles/keyframes.styled";
 import { useNavigate } from "react-router-dom";
-import { AddRounded, TaskAlt } from "@mui/icons-material";
+import { AddRounded } from "@mui/icons-material";
 
 export const BottomNav = () => {
   const n = useNavigate();
 
-  const [value, setValue] = useState<number | undefined>();
   return (
     <Container>
       <StyledBottomNavigation>

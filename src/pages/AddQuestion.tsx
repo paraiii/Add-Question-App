@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Container, StyledInput } from "../styles/addTask.styled";
 import { Button, IconButton, MenuItem, TextField } from "@mui/material";
 import { v4 as uuidv4 } from "uuid";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { useNavigate } from "react-router-dom";
-import { useLocalStorage } from "../hooks/UseLocalStorage";
-import type { Question } from "../types/questionType";
+// import type { Question } from "../types/questionType";
 import { useQuestionContext } from "../contexts/QuestionContext";
 
 export const AddTask = () => {
