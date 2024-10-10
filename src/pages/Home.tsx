@@ -4,6 +4,7 @@ import { Box, IconButton, TextField, Typography } from "@mui/material";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { useQuestionContext } from "../contexts/QuestionContext";
 import styled from "@emotion/styled";
+import { Sidebar } from "../components/Sidebar";
 
 export const Home = () => {
   const { questions } = useQuestionContext();
@@ -15,6 +16,7 @@ export const Home = () => {
 
   return (
     <Box>
+      <Sidebar />
       <Typography></Typography>
       <SearchInput
         label="Search ..."
@@ -27,7 +29,6 @@ export const Home = () => {
         <SearchOutlinedIcon />
       </IconButton>
       <QuestionList filteredQuestionList={filteredQuestion} />
-      {/* <QuestionList /> */}
     </Box>
   );
 };
