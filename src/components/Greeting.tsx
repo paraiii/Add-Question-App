@@ -18,6 +18,13 @@ export const Greeting = () => {
   }
 
   const [greetingMessage, setGreetingMessage] = useState<string>("");
+  const hoursLeft = 24 - new Date().getHours();
+
+  const hurryMessage: string[] = [
+    hoursLeft > 4
+      ? `${hoursLeft} hours left in the day. Use them wisely!`
+      : `Only ${hoursLeft} hours left in the day`,
+  ];
 
   useEffect(() => {
     setGreetingMessage(getRandomGreeting);
@@ -43,7 +50,10 @@ export const Greeting = () => {
   return (
     <div>
       <GreetingHeader>Good {greet}</GreetingHeader>
-      <GreetingText>{replaceEmojiCodes(greetingMessage)}</GreetingText>
+      <GreetingText>
+        {hurryMessage} <br />
+        {replaceEmojiCodes(greetingMessage)}
+      </GreetingText>
     </div>
   );
 };

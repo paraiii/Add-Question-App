@@ -1,6 +1,5 @@
 const recentGreetings: Set<number> = new Set();
 export const maxRecentGreeting = 8;
-const hoursLeft = 24 - new Date().getHours();
 
 const greetingText: string[] = [
   "Let's make today count! **1f680**",
