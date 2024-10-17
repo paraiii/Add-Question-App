@@ -1,10 +1,15 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
-import React, { useEffect, useState, type ReactNode } from "react";
+import React, { useContext, useEffect, useState, type ReactNode } from "react";
 import { getRandomGreeting } from "../utils/getRandomGreeting";
 import { Emoji } from "emoji-picker-react";
+import { UserContext } from "../contexts/UserContext";
 
 export const Greeting = () => {
+  const userContext = useContext(UserContext);
+  //userContext 为空，提供一个默认值
+  const username = userContext?.username || "guest";
+
   let myDate = new Date();
   let hours = myDate.getHours();
   let greet;
@@ -49,7 +54,9 @@ export const Greeting = () => {
 
   return (
     <div>
-      <GreetingHeader>Good {greet}</GreetingHeader>
+      <GreetingHeader>
+        <Emoji unified="1f44b" /> &nbsp;Good {greet}, {username}
+      </GreetingHeader>
       <GreetingText>
         {hurryMessage} <br />
         {replaceEmojiCodes(greetingMessage)}

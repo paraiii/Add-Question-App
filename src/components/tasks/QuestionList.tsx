@@ -20,10 +20,14 @@ interface QuestionListProps {
 
 export const QuestionList = ({ filteredQuestionList }: QuestionListProps) => {
   const { editQuestion, deleteQuestion, pinQuestion } = useQuestionContext();
+  const sortedQuestionList = [...filteredQuestionList].sort((a, b) => {
+    if (a.pinned === b.pinned) return 0;
+    return a.pinned ? -1 : 1; // pinned 为 true 的排在前面
+  });
 
   return (
     <>
-      {filteredQuestionList.map((q) => (
+      {sortedQuestionList.map((q) => (
         <TaskContainer key={q.id} bgColor={q.pinned ? "dark" : "light"}>
           <QuestionInfo>
             <QuestionHeader>

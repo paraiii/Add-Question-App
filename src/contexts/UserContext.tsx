@@ -5,9 +5,10 @@ interface UserContextType {
   setUsername: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-export const UserContext = createContext<UserContextType | undefined>(
-  undefined
-);
+export const UserContext = createContext<UserContextType | undefined>({
+  username: "",
+  setUsername: () => {},
+});
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [username, setUsername] = useState(() => {

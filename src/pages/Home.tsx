@@ -5,6 +5,7 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { useQuestionContext } from "../contexts/QuestionContext";
 import styled from "@emotion/styled";
 import { Sidebar } from "../components/Sidebar";
+import { Greeting } from "../components/Greeting";
 
 export const Home = () => {
   const { questions } = useQuestionContext();
@@ -15,21 +16,30 @@ export const Home = () => {
   );
 
   return (
-    <Box>
-      <Sidebar />
-      <Typography></Typography>
-      <SearchInput
-        label="Search ..."
-        variant="outlined"
-        type="search"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      <IconButton>
-        <SearchOutlinedIcon />
-      </IconButton>
-      <QuestionList filteredQuestionList={filteredQuestion} />
-    </Box>
+    <>
+      {" "}
+      <Box>
+        <TopContainer>
+          <Greeting />
+          <Sidebar />
+        </TopContainer>
+        <SearchContainer>
+          {" "}
+          <SearchInput
+            label="Search ..."
+            variant="outlined"
+            type="search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <IconButton>
+            <SearchOutlinedIcon />
+          </IconButton>
+        </SearchContainer>
+
+        <QuestionList filteredQuestionList={filteredQuestion} />
+      </Box>
+    </>
   );
 };
 
@@ -47,4 +57,17 @@ export const SearchInput = styled(TextField)`
     transition: 0.3s all;
     }
   }
+`;
+
+export const TopContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const SearchContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 24px 0;
 `;
