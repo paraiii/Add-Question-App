@@ -53,15 +53,15 @@ export const Greeting = () => {
   };
 
   return (
-    <div>
+    <GreetingContainer>
       <GreetingHeader>
         <Emoji unified="1f44b" /> &nbsp;Good {greet}, {username}
       </GreetingHeader>
-      <GreetingText>
-        {hurryMessage} <br />
-        {replaceEmojiCodes(greetingMessage)}
-      </GreetingText>
-    </div>
+      <MessageContainer>
+        {hurryMessage}
+        <GreetingText>{replaceEmojiCodes(greetingMessage)}</GreetingText>
+      </MessageContainer>
+    </GreetingContainer>
   );
 };
 
@@ -76,26 +76,33 @@ to {
   }
 `;
 
+const GreetingContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 12px 8px;
+  justify-content: start;
+`;
+
 const GreetingHeader = styled.header`
   display: flex;
-  margin-top: 12px;
   font-size: 26px;
   font-weight: bold;
-  margin-top: 16px;
-  margin-left: 8px;
 
   @media (max-width: 550px) {
     font-size: 22px;
   }
 `;
 
+const MessageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const GreetingText = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: row;
   gap: 6px;
   font-size: 16px;
-  margin-top: 4px;
-  margin-left: 8px;
   font-style: italic;
   animation: ${fadeInLeft} 0.5s ease-in-out;
 `;

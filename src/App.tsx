@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { MainLayout } from "./layouts/MainLayout";
 import AppRouter from "./router";
 import {
-  createTheme,
   CssBaseline,
   FormControlLabel,
   styled,
@@ -11,6 +10,7 @@ import {
 } from "@mui/material";
 import { createCustomTheme } from "./theme/createCustomizeTheme";
 import { Brightness4, Brightness7 } from "@mui/icons-material";
+import { GlobalStyles } from "./styles/globalStyles";
 
 export const App = () => {
   const [mode, setMode] = useState<"light" | "dark">("light");
@@ -22,7 +22,7 @@ export const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-
+      <GlobalStyles />
       <StyledSwitch
         control={
           <Switch

@@ -1,7 +1,6 @@
 import { Delete, Edit, PushPin } from "@mui/icons-material";
 import { IconButton, useTheme } from "@mui/material";
 import { useQuestionContext } from "../../contexts/QuestionContext";
-import styled from "@emotion/styled";
 import { CategoryBadge } from "../CategoryBadge";
 import type { Question } from "../../types/questionType";
 
@@ -12,6 +11,7 @@ import {
   QuestionHeader,
   QuestionAnswer,
   QuestionIconContainer,
+  StyledIconButton,
 } from "./task.styled";
 
 interface QuestionListProps {
@@ -29,7 +29,7 @@ export const QuestionList = ({ filteredQuestionList }: QuestionListProps) => {
   return (
     <>
       {sortedQuestionList.map((q) => (
-        <TaskContainer key={q.id} bgColor={theme.palette.background.default}>
+        <TaskContainer key={q.id} mode={theme.palette.mode}>
           <QuestionInfo>
             <QuestionHeader>
               {q.pinned && (
@@ -42,23 +42,30 @@ export const QuestionList = ({ filteredQuestionList }: QuestionListProps) => {
               {q.question}
             </QuestionHeader>
             <QuestionAnswer>{q.answer}</QuestionAnswer>
-            <CategoryBadge category={q.category} />
+            <CategoryBadge category={q.category} mode={theme.palette.mode} />
           </QuestionInfo>
 
           <QuestionIconContainer>
-            <IconButton onClick={() => pinQuestion(q.id)}>
+            <StyledIconButton
+              onClick={() => pinQuestion(q.id)}
+              mode={theme.palette.mode}
+            >
               <PushPin />
-            </IconButton>
-            <IconButton
+            </StyledIconButton>
+            <StyledIconButton
               onClick={() =>
                 editQuestion(q.id, { question: "Updated Question" })
               }
+              mode={theme.palette.mode}
             >
               <Edit />
-            </IconButton>
-            <IconButton onClick={() => deleteQuestion(q.id)}>
+            </StyledIconButton>
+            <StyledIconButton
+              onClick={() => deleteQuestion(q.id)}
+              mode={theme.palette.mode}
+            >
               <Delete />
-            </IconButton>
+            </StyledIconButton>
           </QuestionIconContainer>
         </TaskContainer>
       ))}

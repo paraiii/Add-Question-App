@@ -5,7 +5,7 @@ export const ColorPalette = {
   lightMode: "#ffffff",
   purple: "#b624ff",
   red: "#ff3131",
-  orange: "#ff9318",
+  orange: "#ecb340",
   yellow: "#fdf0d5",
 } as const;
 

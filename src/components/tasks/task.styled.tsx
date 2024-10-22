@@ -1,19 +1,21 @@
-import { useTheme } from "@emotion/react";
 import styled from "@emotion/styled";
-import { Theme } from "@mui/material/styles";
+import { lighten, darken, IconButton } from "@mui/material";
 
 // Function to calculate the dynamic shadow based on the background color
-const getDynamicShadow = (bgColor: string) => {
-  // Example logic for dynamic shadow calculation:
-  if (bgColor === "dark") {
-    return "rgba(255, 255, 255, 0.3)"; // Lighter shadow for dark background
-  } else {
-    return "rgba(0, 0, 0, 0.2)"; // Darker shadow for light background
-  }
-};
+
+export const TaskListContainer = styled.main`
+  display: flex;
+  justify-content: center;
+  max-width: 700px;
+  margin: 0 20px;
+  flex-direction: column;
+  gap: 6px;
+`;
 
 // TaskContainer with dynamic box-shadow based on bgColor
-export const TaskContainer = styled.main<{ bgColor: string }>`
+export const TaskContainer = styled.div<{
+  mode: "light" | "dark";
+}>`
   display: flex;
   -webkit-box-align: center;
   flex-direction: row;
@@ -26,8 +28,11 @@ export const TaskContainer = styled.main<{ bgColor: string }>`
   border-left: 1px solid transparent;
   background-color: ${({ theme }) =>
     theme.palette.primary.main}; /* 使用 MUI 主题中的 primary.main 作为背景色 */
-  box-shadow: ${({ bgColor }) => getDynamicShadow(bgColor)} 0px 0px 128px -20px;
-
+  box-shadow: ${({ theme }) => theme.palette.primary.main} 0px 0px 128px -20px;
+  color: ${({ theme, mode }) =>
+    mode === "light"
+      ? lighten(theme.palette.background.default, 0.8) // light mode font color
+      : darken(theme.palette.background.default, 0.8)}; // dark mode cont color
   filter: none;
   animation: 0.5s ease-in 0s 1 normal none running animation-if2l3t;
   transition: 0.3s !important;
@@ -63,4 +68,13 @@ export const QuestionAnswer = styled.p`
 export const QuestionIconContainer = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+export const StyledIconButton = styled(IconButton)<{
+  mode: "light" | "dark";
+}>`
+  color: ${({ theme, mode }) =>
+    mode === "light"
+      ? lighten(theme.palette.background.default, 0.8) // light mode font color
+      : darken(theme.palette.background.default, 0.8)}; // dark mode cont color
 `;

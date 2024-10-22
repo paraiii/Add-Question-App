@@ -5,10 +5,10 @@ const lightThemeOptions: ThemeOptions = {
   palette: {
     mode: "light",
     primary: {
-      main: "#fce4ec",
+      main: "#EC407A", // Pink
     },
     secondary: {
-      main: "#fdf0d5",
+      main: "#FCE4EC", //light pink
     },
     background: {
       default: ColorPalette.yellow,
