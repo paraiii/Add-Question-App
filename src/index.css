@@ -17,7 +17,7 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif; /* Ensure font family applies globally */
+  font-family: "Poppins", sans-serif;
   margin: 0;
   display: flex;
   place-items: center;

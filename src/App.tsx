@@ -1,25 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import { MainLayout } from "./layouts/MainLayout";
 import AppRouter from "./router";
-import { createTheme, ThemeProvider } from "@mui/material";
+import {
+  createTheme,
+  CssBaseline,
+  FormControlLabel,
+  styled,
+  Switch,
+  ThemeProvider,
+} from "@mui/material";
+import { createCustomTheme } from "./theme/createCustomizeTheme";
+import { Brightness4, Brightness7 } from "@mui/icons-material";
 
-export const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#0052cc",
-    },
-    secondary: {
-      main: "#edf2ff",
-    },
-  },
-});
+export const App = () => {
+  const [mode, setMode] = useState<"light" | "dark">("light");
+  const toggleTheme = () => {
+    setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+  };
+  const theme = createCustomTheme(mode);
 
-export const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
+
+      <StyledSwitch
+        control={
+          <Switch
+            checked={mode === "dark"}
+            onChange={toggleTheme}
+            icon={<Brightness7 />}
+            checkedIcon={<Brightness4 />}
+          />
+        }
+        label={mode === "light" ? "Light" : "Dark"}
+      />
       <MainLayout>
         <AppRouter />
       </MainLayout>
     </ThemeProvider>
   );
 };
+
+const StyledSwitch = styled(FormControlLabel)`
+  display: flex;
+  justify-content: end;
+`;

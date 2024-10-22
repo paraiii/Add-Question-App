@@ -1,4 +1,6 @@
+import { useTheme } from "@emotion/react";
 import styled from "@emotion/styled";
+import { Theme } from "@mui/material/styles";
 
 // Function to calculate the dynamic shadow based on the background color
 const getDynamicShadow = (bgColor: string) => {
@@ -22,7 +24,10 @@ export const TaskContainer = styled.main<{ bgColor: string }>`
   margin-top: 14px;
   opacity: 1;
   border-left: 1px solid transparent;
+  background-color: ${({ theme }) =>
+    theme.palette.primary.main}; /* 使用 MUI 主题中的 primary.main 作为背景色 */
   box-shadow: ${({ bgColor }) => getDynamicShadow(bgColor)} 0px 0px 128px -20px;
+
   filter: none;
   animation: 0.5s ease-in 0s 1 normal none running animation-if2l3t;
   transition: 0.3s !important;
