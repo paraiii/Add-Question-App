@@ -74,6 +74,8 @@ const UserAvatar = styled(Avatar)`
   color: #ffffff;
   transition: 0.3s background;
   font-weight: 500;
+  width: 60px;
+  height: 60px;
 `;
 
 const StyledSwipeableDrawer = styled(SwipeableDrawer)`

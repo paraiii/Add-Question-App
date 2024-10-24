@@ -6,12 +6,14 @@ const lightThemeOptions: ThemeOptions = {
     mode: "light",
     primary: {
       main: "#EC407A", // Pink
+      // main: "#000",
     },
     secondary: {
       main: "#FCE4EC", //light pink
     },
     background: {
       default: ColorPalette.yellow,
+      // default: "#3a3839", //ColorPalette.yellow
       paper: "#fff",
     },
     warning: {

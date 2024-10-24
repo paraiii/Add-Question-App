@@ -22,7 +22,7 @@ export const QuestionList = ({ filteredQuestionList }: QuestionListProps) => {
   const { editQuestion, deleteQuestion, pinQuestion } = useQuestionContext();
   const sortedQuestionList = [...filteredQuestionList].sort((a, b) => {
     if (a.pinned === b.pinned) return 0;
-    return a.pinned ? -1 : 1; // pinned 为 true 的排在前面
+    return a.pinned ? -1 : 1; // Sort first when pinned is true
   });
   const theme = useTheme();
 
