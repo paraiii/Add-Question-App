@@ -1,13 +1,21 @@
 import { useState } from "react";
-import { Container, StyledInput } from "../styles/addTask.styled";
+import {
+  Container,
+  StyledButton,
+  StyledInput,
+  StyledSelectTextfield,
+} from "../styles/addTask.styled";
 import { Button, IconButton, MenuItem, TextField } from "@mui/material";
 import { v4 as uuidv4 } from "uuid";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { useNavigate } from "react-router-dom";
 // import type { Question } from "../types/questionType";
 import { useQuestionContext } from "../contexts/QuestionContext";
 
-export const AddTask = () => {
+interface AddTaskProps {
+  mode: "light" | "dark";
+}
+
+export const AddTask = ({ mode }: AddTaskProps) => {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [category, setCategory] = useState("");
@@ -60,20 +68,11 @@ export const AddTask = () => {
     navigate("/");
   };
 
-  const redirectHome = () => {
-    navigate("/");
-  };
-
   return (
     <>
-      {/* <TopBar title="Add New Task" /> */}
       <Container>
-        <IconButton onClick={redirectHome}>
-          {" "}
-          <HomeOutlinedIcon />
-        </IconButton>
-
         <StyledInput
+          required
           label="Question"
           name="question"
           value={question}
@@ -81,25 +80,23 @@ export const AddTask = () => {
           autoComplete="off"
           fullWidth
           onChange={handleQuestionChange}
-          required
         />
         <StyledInput
           label="Answer"
           name="answer"
           value={answer}
-          placeholder="Enter answer"
+          placeholder="Enter answer (optional)"
           autoComplete="off"
           fullWidth
           onChange={handleAnswerChange}
         />
-        <TextField
+        <StyledSelectTextfield
           select
           label="Category"
           value={category}
           variant="outlined"
           fullWidth
           onChange={handleCategoryChange}
-          required
         >
           <MenuItem value="HTML">HTML</MenuItem>
           <MenuItem value="CSS">CSS</MenuItem>
@@ -107,10 +104,10 @@ export const AddTask = () => {
           <MenuItem value="Javascript">Javascript</MenuItem>
           <MenuItem value="Typescript">Typescript</MenuItem>
           <MenuItem value="React">React</MenuItem>
-        </TextField>
-        <Button variant="contained" onClick={handleSubmit}>
+        </StyledSelectTextfield>
+        <StyledButton variant="contained" onClick={handleSubmit} mode={mode}>
           Save
-        </Button>
+        </StyledButton>
       </Container>
     </>
   );
