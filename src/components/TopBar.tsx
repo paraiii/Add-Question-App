@@ -21,7 +21,7 @@ interface TopBarProps {
 export const TopBar = ({ title, mode, toggleTheme }: TopBarProps) => {
   const n = useNavigate();
   return (
-    <Container>
+    <TopbarContainer>
       <BackBtn size="large" aria-label="Back" onClick={() => n("/")}>
         {location.pathname === "/add" && <ArrowBackIosNewRounded /> && (
           <HomeOutlinedIcon />
@@ -39,11 +39,11 @@ export const TopBar = ({ title, mode, toggleTheme }: TopBarProps) => {
         }
         label={mode === "light" ? "Light" : "Dark"}
       />
-    </Container>
+    </TopbarContainer>
   );
 };
 
-const Container = styled.div`
+const TopbarContainer = styled.div`
   margin: 0;
   width: 100%;
   position: sticky;

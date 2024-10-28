@@ -7,7 +7,6 @@ import { createCustomTheme } from "./theme/createCustomizeTheme";
 import { GlobalStyles } from "./styles/globalStyles";
 import { TopBar } from "./components/TopBar";
 import { useLocation } from "react-router-dom";
-import styled from "@emotion/styled";
 
 export const App = () => {
   const location = useLocation();

@@ -21,8 +21,7 @@ export const Home = () => {
 
   return (
     <>
-      {" "}
-      <Box>
+      <HomeContainer>
         <TopContainer>
           <Greeting />
           <Sidebar />
@@ -33,7 +32,7 @@ export const Home = () => {
           <QuestionList filteredQuestionList={filteredQuestion} />
         </TaskListContainer>
         <BottomNav mode={theme.palette.mode} />
-      </Box>
+      </HomeContainer>
     </>
   );
 };
@@ -42,4 +41,8 @@ export const TopContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+`;
+
+const HomeContainer = styled(Box)`
+  margin: 0 16vw;
 `;

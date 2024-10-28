@@ -6,7 +6,7 @@ const getTextColor = (bgColor: string, mode: "light" | "dark") => {
   return mode === "light" ? lighten(bgColor, 0.8) : darken(bgColor, 0.8);
 };
 interface CategoryBadgeProps {
-  category: string;
+  category: string[];
   mode: "light" | "dark";
 }
 

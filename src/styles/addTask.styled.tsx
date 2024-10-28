@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import { Button, darken, lighten, TextField } from "@mui/material";
+import { Button, darken, lighten, Select, TextField } from "@mui/material";
 
-export const Container = styled.div`
+export const StyledForm = styled.form`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -24,26 +24,21 @@ export const StyledInput = styled(TextField)<{ helpercolor?: string }>`
   }
 `;
 
-export const StyledSelectTextfield = styled(TextField)`
+export const StyledCategorySelect = styled(Select)`
   margin: 12px 0;
   border-radius: 16px !important;
   transition: 0.3s all;
   width: 400px;
 `;
 
-export const StyledButton = styled(Button)<{
-  mode: "light" | "dark";
-}>`
+export const StyledButton = styled(Button)`
   margin-top: 4px;
   border: none;
   padding: 16px 32px;
   font-size: 24px;
   border: 2px solid ${({ theme }) => theme.palette.primary.main};
   background-color: ${({ theme }) => theme.palette.primary.main};
-  color: ${({ theme, mode }) =>
-    mode === "light"
-      ? darken(theme.palette.primary.main, 0.2) // light mode font color
-      : (theme.palette.primary.main, 0.8)}; // dark mode cont color
+  color: ${({ theme }) => theme.palette.primary.main}
   border-radius: 999px;
   font-weight: bold;
   cursor: pointer;

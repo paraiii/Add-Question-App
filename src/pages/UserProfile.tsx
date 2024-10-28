@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Container } from "../styles/addTask.styled";
 import { TextField, Button } from "@mui/material";
 import styled from "@emotion/styled";
+import { StyledContainer } from "../styles/globalStyles";
 
 export const UserProfile = () => {
   const [username, setUsername] = useState("");
@@ -13,14 +13,14 @@ export const UserProfile = () => {
 
   return (
     <>
-      <Container>
+      <StyledContainer>
         <TextField
           label="username"
           value={username}
           onChange={handleUsername}
         ></TextField>
         <SaveButton />
-      </Container>
+      </StyledContainer>
     </>
   );
 };

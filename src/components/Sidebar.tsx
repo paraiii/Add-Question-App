@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Container } from "../styles/addTask.styled";
 import {
   Avatar,
   Button,
@@ -10,6 +9,7 @@ import {
 } from "@mui/material";
 import styled from "@emotion/styled";
 import { UserContext } from "../contexts/UserContext";
+import { StyledContainer } from "../styles/globalStyles";
 
 export const Sidebar = () => {
   const userContext = useContext(UserContext);
@@ -42,7 +42,7 @@ export const Sidebar = () => {
   };
 
   return (
-    <Container>
+    <StyledContainer>
       <Tooltip title="User">
         <IconButton onClick={toggleDrawer(true)}>
           <UserAvatar>{username ? username : "USER"}</UserAvatar>
@@ -66,7 +66,7 @@ export const Sidebar = () => {
           <Button type="submit">Save</Button>
         </FormContainer>
       </StyledSwipeableDrawer>
-    </Container>
+    </StyledContainer>
   );
 };
 

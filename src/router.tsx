@@ -7,7 +7,7 @@ const AppRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/add" element={<AddTask />} />
+      <Route path="/add" element={<AddTask mode={"light"} />} />
       <Route path="/user" element={<UserProfile />} />
     </Routes>
   );

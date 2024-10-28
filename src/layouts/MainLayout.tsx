@@ -7,10 +7,5 @@ interface MainLayoutProps {
   children: ReactNode;
 }
 export const MainLayout = ({ children }: MainLayoutProps) => {
-  return (
-    <QuestionProvider>
-      {children}
-      <div style={{ marginTop: "128px" }}></div>
-    </QuestionProvider>
-  );
+  return <QuestionProvider>{children}</QuestionProvider>;
 };

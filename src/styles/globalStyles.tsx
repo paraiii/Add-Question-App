@@ -1,4 +1,5 @@
 import { css, Global, useTheme } from "@emotion/react";
+import styled from "@emotion/styled";
 
 export const GlobalStyles = () => {
   const theme = useTheme();
@@ -69,7 +70,7 @@ export const GlobalStyles = () => {
           box-shadow: none;
         }
         body {
-          margin: 8px 16vw;
+          margin: 8px 20px;
           touch-action: manipulation;
           background: ${theme.secondary};
           background-attachment: fixed;
@@ -104,3 +105,11 @@ export const GlobalStyles = () => {
     />
   );
 };
+
+export const StyledContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+`;
