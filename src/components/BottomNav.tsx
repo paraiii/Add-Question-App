@@ -1,3 +1,4 @@
+import { AddRounded } from "@mui/icons-material";
 import {
   BottomNavigation,
   BottomNavigationAction,
@@ -7,9 +8,8 @@ import {
   lighten,
   styled,
 } from "@mui/material";
-import { slideInBottom } from "../styles/keyframes.styled";
 import { useNavigate } from "react-router-dom";
-import { AddRounded } from "@mui/icons-material";
+import { slideInBottom } from "../styles/keyframes.styled";
 
 interface BottomNavProps {
   mode: "light" | "dark";
