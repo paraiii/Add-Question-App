@@ -1,17 +1,17 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
-import React, { useContext, useEffect, useState, type ReactNode } from "react";
-import { getRandomGreeting } from "../utils/getRandomGreeting";
 import { Emoji } from "emoji-picker-react";
+import { useContext, useEffect, useState, type ReactNode } from "react";
 import { UserContext } from "../contexts/UserContext";
+import { getRandomGreeting } from "../utils/getRandomGreeting";
 
 export const Greeting = () => {
   const userContext = useContext(UserContext);
   //userContext 为空，提供一个默认值
   const username = userContext?.username || "guest";
 
-  let myDate = new Date();
-  let hours = myDate.getHours();
+  const myDate = new Date();
+  const hours = myDate.getHours();
   let greet;
 
   if (hours < 12) {
