@@ -1,15 +1,17 @@
-import { useState } from "react";
-import {
-  StyledForm,
-  StyledButton,
-  StyledInput,
-  StyledCategorySelect,
-} from "../styles/addTask.styled";
 import { MenuItem, OutlinedInput, type SelectChangeEvent } from "@mui/material";
-import { v4 as uuidv4 } from "uuid";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import {
+  StyledButton,
+  StyledCategorySelect,
+  StyledForm,
+  StyledInput,
+} from "../styles/addTask.styled";
 // import type { Question } from "../types/questionType";
+import { Toaster } from "react-hot-toast";
 import { useQuestionContext } from "../contexts/QuestionContext";
+import { showToast } from "../utils/showToast";
 
 interface AddTaskProps {
   mode: "light" | "dark";
@@ -52,7 +54,7 @@ export const AddTask = ({ mode }: AddTaskProps) => {
     );
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // useLocalStorage
@@ -76,13 +78,18 @@ export const AddTask = ({ mode }: AddTaskProps) => {
     setQuestion("");
     setAnswer("");
     setCategory([]);
+    await showToast(
+      "🎉 Question added successfully!",
+      "success",
+      "bottom-center"
+    );
     console.log("Question submitted");
-    alert("Submit successfully");
     navigate("/");
   };
 
   return (
     <>
+      <Toaster reverseOrder={false} />
       <StyledForm onSubmit={handleSubmit}>
         <StyledInput
           required
