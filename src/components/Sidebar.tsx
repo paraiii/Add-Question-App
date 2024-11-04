@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import styled from "@emotion/styled";
 import {
   Avatar,
   Button,
@@ -7,9 +7,11 @@ import {
   TextField,
   Tooltip,
 } from "@mui/material";
-import styled from "@emotion/styled";
+import React, { useContext, useState } from "react";
+import { Toaster } from "react-hot-toast";
 import { UserContext } from "../contexts/UserContext";
 import { StyledContainer } from "../styles/globalStyles";
+import { showToast } from "../utils/showToast";
 
 export const Sidebar = () => {
   const userContext = useContext(UserContext);
@@ -36,13 +38,24 @@ export const Sidebar = () => {
     setUsername(newUsername);
   };
 
-  const handleSubmit = () => {
-    setUsername(username);
-    alert("You have successfully save your username");
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (username) {
+      await showToast(
+        `You have successfully saved your username as ${username}!`,
+        "success",
+        "top-center"
+      );
+      setDrawerOpen(false);
+    } else {
+      await showToast("Please enter a valid username!", "error", "top-center");
+    }
   };
 
   return (
     <StyledContainer>
+      <Toaster reverseOrder={false} />
+
       <Tooltip title="User">
         <IconButton onClick={toggleDrawer(true)}>
           <UserAvatar>{username ? username : "USER"}</UserAvatar>
@@ -61,7 +74,6 @@ export const Sidebar = () => {
             value={username}
             placeholder="Add name"
             onChange={handleUsername}
-            required
           />
           <Button type="submit">Save</Button>
         </FormContainer>
