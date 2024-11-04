@@ -13,8 +13,8 @@ export const EditQuestion = () => {
       <Dialog open={open} onClose={handleDialog(false)}>
         <CustomDialogTitle
           onClose={handleDialog(false)}
-          title={"Edit Question"}
-          subTitle={"sub"}
+          title="Edit Question"
+          subTitle="sub"
         />
       </Dialog>
     </div>

@@ -38,16 +38,17 @@ export const Sidebar = () => {
     setUsername(newUsername);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (username) {
       await showToast(
         `You have successfully saved your username as ${username}!`,
         "success",
         "top-center"
       );
+      setDrawerOpen(false);
     } else {
-      await showToast(`Please enter a valid username!`, "error", "top-center");
-      setDrawerOpen(true);
+      await showToast("Please enter a valid username!", "error", "top-center");
     }
   };
 

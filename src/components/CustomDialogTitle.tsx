@@ -17,11 +17,11 @@ export const CustomDialogTitle = ({
 }: CustomDialogTitleProps) => {
   return (
     <DialogTitle {...props}>
-      {onClose ? (
+      {onClose && (
         <Button>
           <CloseIcon />
         </Button>
-      ) : null}
+      )}
       <TitleContainer>
         <Title>{title}</Title>
         <SubTitle>{subTitle}</SubTitle>

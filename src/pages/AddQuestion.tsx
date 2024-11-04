@@ -83,7 +83,6 @@ export const AddTask = ({ mode }: AddTaskProps) => {
       "success",
       "bottom-center"
     );
-    console.log("Question submitted");
     navigate("/");
   };
 
