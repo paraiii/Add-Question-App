@@ -1,15 +1,15 @@
-import { MenuItem, OutlinedInput, type SelectChangeEvent } from "@mui/material";
+import { type SelectChangeEvent } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import {
   StyledButton,
-  StyledCategorySelect,
   StyledForm,
   StyledInput,
 } from "../styles/addTask.styled";
 // import type { Question } from "../types/questionType";
 import { Toaster } from "react-hot-toast";
+import { CategorySelect } from "../components/CategorySelect";
 import { useQuestionContext } from "../contexts/QuestionContext";
 import { showToast } from "../utils/showToast";
 
@@ -24,7 +24,7 @@ const MenuProps = {
     },
   },
 };
-export const AddTask = ({ mode }: AddTaskProps) => {
+export const AddQuestion = ({ mode }: AddTaskProps) => {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [category, setCategory] = useState<string[]>([]);
@@ -109,24 +109,7 @@ export const AddTask = ({ mode }: AddTaskProps) => {
           fullWidth
           onChange={handleAnswerChange}
         />
-        <StyledCategorySelect
-          multiple
-          required
-          label="Category"
-          value={category}
-          variant="outlined"
-          onChange={handleCategoryChange}
-          input={<OutlinedInput label="Category" />}
-          MenuProps={MenuProps}
-          fullWidth
-        >
-          <MenuItem value="HTML">HTML</MenuItem>
-          <MenuItem value="CSS">CSS</MenuItem>
-          <MenuItem value="Authenticaton">Authenticaton</MenuItem>
-          <MenuItem value="Javascript">Javascript</MenuItem>
-          <MenuItem value="Typescript">Typescript</MenuItem>
-          <MenuItem value="React">React</MenuItem>
-        </StyledCategorySelect>
+        <CategorySelect value={category} onChange={handleCategoryChange} />
         <StyledButton variant="contained" type="submit">
           Save
         </StyledButton>

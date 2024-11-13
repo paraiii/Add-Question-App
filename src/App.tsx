@@ -1,12 +1,12 @@
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import { useState } from "react";
 import { MainLayout } from "./layouts/MainLayout";
 import AppRouter from "./router";
-import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createCustomTheme } from "./theme/createCustomizeTheme";
 
-import { GlobalStyles } from "./styles/globalStyles";
-import { TopBar } from "./components/TopBar";
 import { useLocation } from "react-router-dom";
+import { TopBar } from "./components/TopBar";
+import { GlobalStyles } from "./styles/globalStyles";
 
 export const App = () => {
   const location = useLocation();
@@ -23,6 +23,9 @@ export const App = () => {
     }
     if (location.pathname === "/") {
       return "Master Your Question!";
+    }
+    if (location.pathname === "/categories") {
+      return "Categories";
     }
 
     return "Placeholder";
