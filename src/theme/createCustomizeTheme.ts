@@ -4,21 +4,35 @@ import { ColorPalette } from "./themeConfig";
 const lightThemeOptions: ThemeOptions = {
   palette: {
     mode: "light",
+    // private
+
     primary: {
-      main: "#EC407A", // Pink
-      // main: "#000",
-    },
-    secondary: {
-      main: "#FCE4EC", //light pink
+      main: "#898989",
     },
     background: {
-      default: ColorPalette.yellow,
-      // default: "#3a3839", //ColorPalette.yellow
+      default: "#efefef", // background color
       paper: "#fff",
     },
     warning: {
-      main: ColorPalette.orange,
+      main: "#666666", // category badge
     },
+
+    // prod
+
+    // primary: {
+    //   main: "#EC407A", // Pink
+    // },
+    // secondary: {
+    //   main: "#FCE4EC", //light pink
+    // },
+    // background: {
+    //   default: ColorPalette.yellow,
+    //   paper: "#fff",
+    // },
+    // warning: {
+    //    main: ColorPalette.orange,
+    // },
+
     error: {
       main: ColorPalette.red,
     },

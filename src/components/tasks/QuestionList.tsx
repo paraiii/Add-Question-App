@@ -4,6 +4,7 @@ import { useQuestionContext } from "../../contexts/QuestionContext";
 import type { Question } from "../../types/questionType";
 import { CategoryBadge } from "../CategoryBadge";
 
+import styled from "@emotion/styled";
 import { useState } from "react";
 import { EditQuestion } from "../EditQuestion";
 import {
@@ -59,7 +60,16 @@ export const QuestionList = ({ filteredQuestionList }: QuestionListProps) => {
               {q.question}
             </QuestionHeader>
             <QuestionAnswer>{q.answer}</QuestionAnswer>
-            <CategoryBadge category={q.category} mode={theme.palette.mode} />
+            {/* <CategoryBadge category={q.category} mode={theme.palette.mode} /> */}
+            <CategoryBadgeContainer>
+              {q.category.map((cat) => (
+                <CategoryBadge
+                  key={cat}
+                  category={cat}
+                  mode={theme.palette.mode}
+                />
+              ))}
+            </CategoryBadgeContainer>
           </QuestionInfo>
 
           <QuestionIconContainer>
@@ -100,3 +110,9 @@ export const QuestionList = ({ filteredQuestionList }: QuestionListProps) => {
     </>
   );
 };
+
+const CategoryBadgeContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+`;

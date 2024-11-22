@@ -9,6 +9,30 @@ export const Categories = () => {
   const [mode, setMode] = useState<"light" | "dark">("light");
   const [openEditDialog, setOpenEditDialog] = useState<boolean>(false);
 
+  const [categories, setCategories] = useState([
+    { id: "1", name: "HTML" },
+    { id: "2", name: "CSS" },
+    { id: "3", name: "Javascript" },
+    { id: "4", name: "React" },
+  ]);
+
+  const [newCategory, setNewCategory] = useState<string>("");
+  const [editingId, setEditingId] = useState<string>("");
+  const [editValue, setEditValue] = useState<string>("");
+
+  const handleAddCategory = () => {
+    if (newCategory === "") return;
+    setCategories((prev) => [
+      ...prev,
+      { id: `${prev.length + 1}`, name: newCategory },
+    ]);
+    setNewCategory("");
+  };
+
+  const handleDeleteCategory = (id: string) => {
+    setCategories((prev) => prev.filter((cat) => cat.id !== id));
+  };
+
   const toggleTheme = () => {
     setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
   };
