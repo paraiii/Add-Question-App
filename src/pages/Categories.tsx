@@ -1,95 +1,91 @@
 import styled from "@emotion/styled";
-import { SaveRounded } from "@mui/icons-material";
-import { Dialog, DialogActions, DialogContent, TextField } from "@mui/material";
+import { Delete, Edit } from "@mui/icons-material";
+import { Button, IconButton, TextField } from "@mui/material";
 import { useState } from "react";
-import { CustomDialogTitle } from "../components/CustomDialogTitle";
-import { DialogBtn } from "../styles/common.styled";
+import { useCategories } from "../contexts/CategoriesContext";
 
 export const Categories = () => {
   const [mode, setMode] = useState<"light" | "dark">("light");
-  const [openEditDialog, setOpenEditDialog] = useState<boolean>(false);
-
-  const [categories, setCategories] = useState([
-    { id: "1", name: "HTML" },
-    { id: "2", name: "CSS" },
-    { id: "3", name: "Javascript" },
-    { id: "4", name: "React" },
-  ]);
-
   const [newCategory, setNewCategory] = useState<string>("");
-  const [editingId, setEditingId] = useState<string>("");
-  const [editValue, setEditValue] = useState<string>("");
-
-  const handleAddCategory = () => {
-    if (newCategory === "") return;
-    setCategories((prev) => [
-      ...prev,
-      { id: `${prev.length + 1}`, name: newCategory },
-    ]);
-    setNewCategory("");
-  };
-
-  const handleDeleteCategory = (id: string) => {
-    setCategories((prev) => prev.filter((cat) => cat.id !== id));
-  };
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editingValue, setEditingValue] = useState<string>("");
+  const { categories, addCategory, deleteCategory, editCategory } =
+    useCategories();
 
   const toggleTheme = () => {
     setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
   };
 
-  const handleEditDimiss = () => {
-    setOpenEditDialog(false);
+  const handleAddCategory = () => {
+    if (newCategory.trim()) {
+      addCategory(newCategory);
+      setNewCategory("");
+    }
+  };
+
+  const handleSaveEdit = (id: string) => {
+    editCategory(id, editingValue);
+    setEditingId(null);
+    setEditingValue("");
   };
 
   return (
-    <div>
-      {/* <TopBar toggleTheme={toggleTheme} mode={mode} title="" /> */}
-      <CategoriesContainer>
-        <Dialog
-          open={openEditDialog}
-          onClose={handleEditDimiss}
-          PaperProps={{
-            style: {
-              borderRadius: "24px",
-              padding: "12px",
-              minWidth: "350px",
-            },
-          }}
-        >
-          title
-          <CustomDialogTitle
-            title="Edit Category"
-            subTitle={`Edit the details of the category.`}
-            onClose={handleEditDimiss}
-          />
-          <DialogContent>
-            <EditNameInput
-              label="Enter category name"
-              placeholder="Enter category name"
-            />
-            {/* <ColorPicker
-                color={editColor}
-                width="350px"
-                fontColor={
-                  theme.darkmode
-                    ? ColorPalette.fontLight
-                    : ColorPalette.fontDark
-                }
-                onColorChange={(clr) => {
-                  setEditColor(clr);
-                }}
+    <Container>
+      <h2>Manage Categories</h2>
+      <CategoryList>
+        {categories.map((category) => (
+          <CategoryItem key={category.id}>
+            {editingId === category.id ? (
+              <TextField
+                value={editingValue}
+                onChange={(e) => setEditingValue(e.target.value)}
+                size="small"
               />
-            </div> */}
-          </DialogContent>
-          <DialogActions>
-            <DialogBtn onClick={handleEditDimiss}>Cancel</DialogBtn>
-            <DialogBtn>
-              <SaveRounded /> &nbsp; Save
-            </DialogBtn>
-          </DialogActions>
-        </Dialog>
-      </CategoriesContainer>
-    </div>
+            ) : (
+              <span>{category.name}</span>
+            )}
+            <Actions>
+              {editingId === category.id ? (
+                <Button
+                  variant="contained"
+                  size="small"
+                  onClick={() => handleSaveEdit(category.id)}
+                >
+                  Save
+                </Button>
+              ) : (
+                <IconButton
+                  size="small"
+                  onClick={() => {
+                    setEditingId(category.id);
+                    setEditingValue(category.name);
+                  }}
+                >
+                  <Edit />
+                </IconButton>
+              )}
+              <IconButton
+                size="small"
+                onClick={() => deleteCategory(category.id)}
+              >
+                <Delete />
+              </IconButton>
+            </Actions>
+          </CategoryItem>
+        ))}
+      </CategoryList>
+      <AddCategoryContainer>
+        <TextField
+          label="Add new category"
+          value={newCategory}
+          onChange={(e) => setNewCategory(e.target.value)}
+          size="small"
+        />
+        <Button variant="contained" onClick={handleAddCategory}>
+          Add
+        </Button>
+      </AddCategoryContainer>
+    </Container>
   );
 };
 
@@ -107,4 +103,38 @@ export const EditNameInput = styled(TextField)`
     border-radius: 16px;
     width: 350px;
   }
+`;
+const Container = styled.div`
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  background: #f4f4f4;
+`;
+
+const CategoryList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+const CategoryItem = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+`;
+
+const Actions = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
+const AddCategoryContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
 `;

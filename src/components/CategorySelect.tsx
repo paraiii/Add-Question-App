@@ -9,7 +9,8 @@ import {
   Select,
   SelectChangeEvent,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useCategories } from "../contexts/CategoriesContext";
 
 interface CategorySelectProps {
   value: string[];
@@ -17,19 +18,14 @@ interface CategorySelectProps {
   label?: string;
 }
 
-const MenuProps = {
-  PaperProps: {
-    style: {
-      width: 250,
-    },
-  },
-};
-
 export const CategorySelect = ({
   value,
   onChange,
   label = "Category",
 }: CategorySelectProps) => {
+  const { categories } = useCategories();
+  const navigate = useNavigate();
+
   return (
     <StyledFormControl>
       <Select
@@ -41,19 +37,16 @@ export const CategorySelect = ({
         input={<OutlinedInput label={label} />}
         fullWidth
       >
-        <MenuItem value="HTML">HTML</MenuItem>
-        <MenuItem value="CSS">CSS</MenuItem>
-        <MenuItem value="Authentication">Authentication</MenuItem>
-        <MenuItem value="Javascript">Javascript</MenuItem>
-        <MenuItem value="Typescript">Typescript</MenuItem>
-        <MenuItem value="React">React</MenuItem>
+        {categories.map((category) => (
+          <MenuItem key={category.id} value={category.name}>
+            {category.name}
+          </MenuItem>
+        ))}
       </Select>
       <div>
-        <Link to="/categories">
-          <Button>
-            <EditRounded /> &nbsp; Modify Categories
-          </Button>
-        </Link>
+        <Button onClick={() => navigate("/categories")}>
+          <EditRounded /> &nbsp; Modify Categories
+        </Button>
       </div>
     </StyledFormControl>
   );
