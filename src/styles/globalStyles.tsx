@@ -48,8 +48,10 @@ export const GlobalStyles = () => {
           display: none;
         }
         div[role="dialog"] {
-          border-radius: 42px 42px 0 0;
+          border-radius: 24px;
           z-index: 9999999;
+          padding: 20px;
+          max-width: 600px;
         }
 
         div[data-rsbs-backdrop] {
