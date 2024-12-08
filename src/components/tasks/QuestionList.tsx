@@ -44,8 +44,24 @@ export const QuestionList = ({ filteredQuestionList }: QuestionListProps) => {
   });
   const theme = useTheme();
 
+  const allCategories = Array.from(
+    new Set(filteredQuestionList.flatMap((q) => q.category))
+  );
+
   return (
     <>
+      {allCategories && (
+        <CategoryBadgeSection>
+          {allCategories.map((category) => (
+            <CategoryBadge
+              key={category}
+              category={category}
+              mode={theme.palette.mode}
+            />
+          ))}
+        </CategoryBadgeSection>
+      )}
+
       {sortedQuestionList.map((q) => (
         <TaskContainer key={q.id} mode={theme.palette.mode}>
           <QuestionInfo>
@@ -110,6 +126,12 @@ export const QuestionList = ({ filteredQuestionList }: QuestionListProps) => {
     </>
   );
 };
+
+const CategoryBadgeSection = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+`;
 
 const CategoryBadgeContainer = styled.div`
   display: flex;
